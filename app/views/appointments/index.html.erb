@@ -1,1 +1,19 @@
-<h1>This is the Model's index page.</h1>
+<h1>Appointments:</h1>
+<h1>-------------------</h1>
+
+<% @app.all.each do |app| %>
+    <p>Purpose: <%= app.purpose %></p>
+    <p>Dentist ID: <%= app.dentist_id %></p>
+    <p>Patient ID: <%= app.patient_id %></p>
+       
+    <a href="/appointments/<%=app.id%>/edit"><input class="btn" type="submit" value="Edit"  ></a>
+    
+    
+        <form method="post" action="/patients/<%=  p.id %>">
+            <input id="hidden" type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="Delete">
+        </form>
+
+    <p> ---------------------------------------------- </p>
+
+    <% end %>
