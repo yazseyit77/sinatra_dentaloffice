@@ -1,10 +1,16 @@
 <h1>Appointments:</h1>
 <h1>-------------------</h1>
 
+<a href="/dentists/index"><input class="btn" type="submit" value="Home"  ></a>
+
+<br>
+<br>
+
 <% @app.all.each do |app| %>
     <p>Purpose: <%= app.purpose %></p>
     <p>Dentist ID: <%= app.dentist_id %></p>
     <p>Patient ID: <%= app.patient_id %></p>
+    <p>Date: <%= app.appoinment_date %></p>
        
     <a href="/appointments/<%=app.id%>/edit"><input class="btn" type="submit" value="Edit"  ></a>
     
@@ -17,3 +23,6 @@
     <p> ---------------------------------------------- </p>
 
     <% end %>
+
+    
+<a href="/dentists/index"><input class="btn" type="submit" value="Home"  ></a>

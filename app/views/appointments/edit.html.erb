@@ -1,8 +1,9 @@
 <h1>Insert the form to edit an instance of your model here.</h1>
 <form method="post" action="/appointments/<%=@app.id%>"> 
     <input id="hidden" type="hidden" name="_method" value="PATCH">
-    <h4>Name: <input type="text" name="appointment[purpose]" id="purpose" value="<%= @app.purpose %>"></h4>
-    <h4>Address: <input type="text" name="appointment[dentist_id]" id="dentist_id" value="<%= @app.dentist_id %>"></h4>
-    <h4>Email: <input type="text" name="appointment[patient_id]" id="patient_id" value="<%= @app.patient_id %>"></h4>
+    <h4>Purpose: <input type="text" name="appointment[purpose]" id="purpose" value="<%= @app.purpose %>"></h4>
+    <h4>Dentist ID: <input type="text" name="appointment[dentist_id]" id="dentist_id" value="<%= @app.dentist_id %>"></h4>
+    <h4>Patient ID: <input type="text" name="appointment[patient_id]" id="patient_id" value="<%= @app.patient_id %>"></h4>
+    <h4>Date: <input type="text" name="appointment[appoinment_date]" id="appoinment_date" value="<%= @app.appoinment_date %>"></h4>
     <input type="submit" id="Add" value="Submit" name="Add">
 </form>

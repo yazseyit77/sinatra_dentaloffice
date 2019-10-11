@@ -16,7 +16,8 @@ class AppointmentsController < ApplicationController
     @app = Appointment.new(
       purpose: params[:purpose],
       dentist_id: params[:dentist_id],
-      patient_id: params[:patient_id]
+      patient_id: params[:patient_id],
+      appoinment_date: params[:appoinment_date],
     )
     @app.save
     redirect "/appointments"
