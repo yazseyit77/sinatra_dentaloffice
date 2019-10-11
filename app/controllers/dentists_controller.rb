@@ -4,9 +4,9 @@ class DentistsController < ApplicationController
   use Rack::Flash
 
   # GET: /dentists
-  get "/" do
+  get "/dentists/show" do
     @dentist = Dentist.all
-    erb :welcome
+    erb :"/dentists/show"
   end
 
   # GET: /dentists/new
@@ -59,16 +59,21 @@ class DentistsController < ApplicationController
 
   # GET: /dentists/5/edit
   get "/dentists/:id/edit" do
+    @dentists = Dentist.find_by(id: params[:id])
     erb :"/dentists/edit.html"
   end
 
   # PATCH: /dentists/5
   patch "/dentists/:id" do
-    redirect "/dentists/:id"
+    @dentists = Dentist.find_by(id: params[:id])
+    @dentists.update(params[:dentists])
+    redirect "/dentists/show"
   end
 
   # DELETE: /dentists/5/delete
-  delete "/dentists/:id/delete" do
-    redirect "/dentists"
+  delete "/dentists/:id" do
+    @dentists = Dentist.find_by(id: params[:id])
+    @dentists.destroy
+    redirect "/dentists/show"
   end
 end

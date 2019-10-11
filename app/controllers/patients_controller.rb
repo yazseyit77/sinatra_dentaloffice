@@ -39,7 +39,6 @@ class PatientsController < ApplicationController
   # PATCH: /patients/5
   patch "/patients/:id" do
     @patient = Patient.find_by(id: params[:id])
-    # binding.pry
     @patient.update(params[:patient])
     redirect "/patients"
   end

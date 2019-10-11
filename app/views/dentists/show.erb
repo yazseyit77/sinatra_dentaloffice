@@ -1,0 +1,24 @@
+<h1> Dentists </h1>
+
+<a href="/dentists/index"><input class="btn" type="submit" value="Home"  ></a>
+
+<% @dentist.all.each do |dentist| %>
+    <p>Name: <%= dentist.name %></p>
+    <p>Username: <%= dentist.username %></p>
+    <p>Email: <%= dentist.email %></p>
+    <p>Password: <%= dentist.password %></p>
+       
+    <a href="/dentists/<%=dentist.id%>/edit"><input class="btn" type="submit" value="Edit"  ></a>
+    
+    
+        <form method="post" action="/dentists/<%=  dentist.id %>">
+            <input id="hidden" type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="Delete">
+        </form>
+
+    <p> ---------------------------------------------- </p>
+
+    <% end %>
+
+    
+<a href="/dentists/index"><input class="btn" type="submit" value="Home"  ></a>

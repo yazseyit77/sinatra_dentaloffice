@@ -1,5 +1,12 @@
 <h1>Edit your profile!</h1>
-<form action="/dentists/<%= @dentist.id %>" method="post">
-    <input id="hidden" type="hidden" name="_method" value="patch">
-    <input type="text" ...>
+
+
+<form action="/dentists/<%=@dentists.id%>" method="post">
+    <h4>Name: <input type="text" name="dentists[name]" id="name" value="<%= @dentists.name %>"></h4>  
+    <h4>Username: <input type="text" name="dentists[username]" id="username" value="<%= @dentists.username %>"></h4>  
+    <h4>Email: <input type="text" name="dentists[email]" id="email" value="<%= @dentists.email %>"></h4>  
+    <h4>Password: <input type="text" name="dentists[password]" id="password" value="<%= @dentists.password %>"></h4>  
+
+    <input id="hidden" type="hidden" name="_method" value="PATCH">
+    <input type="submit" id="Add" value="Submit" name="Add">
 </form>
