@@ -1,6 +1,7 @@
 <h1> Dentists List </h1>
 
-<a href="/dentists/index"><input class="btn" type="submit" value="Home"  ></a>
+<a href="/"><input class="btn" type="submit" value="Home"  ></a>
+<a href="/dentists/index"><input class="btn" type="submit" value="Back"  ></a>
 
 <% @dentist.all.each do |dentist| %>
     <p>Name: <%= dentist.name %></p>
@@ -21,4 +22,5 @@
     <% end %>
 
     
-<a href="/dentists/index"><input class="btn" type="submit" value="Home"  ></a>
+<a href="/dentists/index"><input class="btn" type="submit" value="Back"  ></a>
+<a href="/"><input class="btn" type="submit" value="Home"  ></a>

@@ -15,12 +15,12 @@ class ApplicationController < Sinatra::Base
   end
 
   
-  get "/dentists/login" do
+  get "/login" do
     if logged_in?
       @dentist = current_user
       redirect "/dentists/index.html"
     else
-      erb :"/dentists/login.html"
+      erb :"/dentists/login"
     end
   end
 
@@ -29,7 +29,7 @@ class ApplicationController < Sinatra::Base
     if @dentist
       redirect to "/dentists/#{@dentist.id}"
     else 
-      redirect "/dentists/login.html"
+      redirect "/dentists/login"
     end
   end
 
@@ -37,9 +37,9 @@ class ApplicationController < Sinatra::Base
   # get '/signup' do
   #   if logged_in?
   #     session.clear
-  #     erb :signup
+  #     erb :"dentists/index.html"
   #   else
-  #     erb :signup
+  #     erb :"dentists/new.html"
   #   end
   # end
 
@@ -54,8 +54,7 @@ class ApplicationController < Sinatra::Base
   #     session[:dentist_id] = @dentist.id
   #     redirect '/login'
   #   else
-  #     puts "You need to signup"
-  #     redirect '/signup'
+  #     redirect "dentists/new.html"
   #   end
   # end
 
@@ -91,7 +90,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_user
-      Dentist.find(session[:dentist_id])
+      Dentist.find_by(id: session[:id])
     end
   end
 
