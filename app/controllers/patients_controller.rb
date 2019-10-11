@@ -32,16 +32,20 @@ class PatientsController < ApplicationController
 
   # GET: /patients/5/edit
   get "/patients/:id/edit" do
+    @patient = Patient.find_by(id: params[:id])
     erb :"/patients/edit.html"
   end
 
   # PATCH: /patients/5
   patch "/patients/:id" do
-    redirect "/patients/:id"
+    @patient = Patient.find_by(id: params[:id])
+    # binding.pry
+    @patient.update(params[:patient])
+    redirect "/patients"
   end
 
   # DELETE: /patients/5/delete
-  delete "/patients/:id/delete" do
+  delete "/patients/:id" do
     @patient = Patient.find_by(id: params[:id])
     @patient.destroy
     redirect "/patients"

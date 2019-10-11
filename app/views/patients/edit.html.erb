@@ -1,1 +1,10 @@
 <h1>Insert the form to edit an instance of your model here.</h1>
+<form method="post" action="/patients/<%=@patient.id%>"> 
+    <input id="hidden" type="hidden" name="_method" value="PATCH">
+    <h4>Name: <input type="text" name="patient[name]" id="name" value="<%= @patient.name %>"></h4>
+    <h4>Address: <input type="text" name="patient[adress]" id="adress" value="<%= @patient.adress %>"></h4>
+    <h4>Email: <input type="text" name="patient[email]" id="email" value="<%= @patient.email %>"></h4>
+    <h4>Phone: <input type="text" name="patient[phone]" id="phone" value="<%= @patient.phone %>"></h4>
+    <h4>Description: <textarea name="patient[description]" id="description" value="<%= @patient.description %>"> </textarea></h4>
+    <input type="submit" id="Add" value="Edit" name="Add">
+</form>

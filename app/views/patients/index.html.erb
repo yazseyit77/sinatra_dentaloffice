@@ -7,8 +7,15 @@
     <p>Email: <%= p.email %></p>
     <p>Phone #: <%= p.phone %> </p>
     <p>Description <%= p.description %></p>
-    <a href="/patients/edit"><input class="btn" type="submit" value="Edit"  ></a>
-    <a href="/patients/delete"><input class="btn" type="submit" value="Delete"  ></a>
+    
+    <a href="/patients/<%=p.id%>/edit"><input class="btn" type="submit" value="Edit"  ></a>
+    
+    
+        <form method="post" action="/patients/<%=  p.id %>">
+            <input id="hidden" type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="delete">
+        </form>
+
     <p> ---------------------------------------------- </p>
 
     <% end %>
