@@ -14,6 +14,26 @@ class ApplicationController < Sinatra::Base
     erb :welcome
   end
 
+  
+  get "/dentists/login" do
+    if logged_in?
+      @dentist = current_user
+      redirect "/dentists/index.html"
+    else
+      erb :"/dentists/login.html"
+    end
+  end
+
+  post "/dentists/login" do
+    @dentist = Dentist.find_by(username: params[:dentist][:username])
+    if @dentist
+      redirect to "/dentists/#{@dentist.id}"
+    else 
+      redirect "/dentists/login.html"
+    end
+  end
+
+
   # get '/signup' do
   #   if logged_in?
   #     session.clear

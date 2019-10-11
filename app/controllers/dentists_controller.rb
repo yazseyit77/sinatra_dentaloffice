@@ -38,23 +38,23 @@ class DentistsController < ApplicationController
     end
   
 
-  get "/dentists/login" do
-    if logged_in?
-      flash[:message] = "You are logged in!"
-      redirect "/dentists/index.html"
-    else
-      erb :"/dentists/login.html"
-    end
-  end
+  # get "/dentists/login" do
+  #   if logged_in?
+  #     @dentist = current_user
+  #     redirect "/dentists/index.html"
+  #   else
+  #     erb :"/dentists/login.html"
+  #   end
+  # end
 
-  post "/dentists/login" do
-    @dentist = Dentist.find_by(username: params[:dentist][:username])
-    if @dentist
-      redirect to "/dentists/#{@dentist.id}"
-    else 
-      redirect "/dentists/login.html"
-    end
-  end
+  # post "/dentists/login" do
+  #   @dentist = Dentist.find_by(username: params[:dentist][:username])
+  #   if @dentist
+  #     redirect to "/dentists/#{@dentist.id}"
+  #   else 
+  #     redirect "/dentists/login.html"
+  #   end
+  # end
 
 
   # GET: /dentists/5/edit
