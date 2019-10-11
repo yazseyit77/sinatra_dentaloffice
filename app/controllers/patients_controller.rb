@@ -2,6 +2,7 @@ class PatientsController < ApplicationController
 
   # GET: /patients
   get "/patients" do
+    @patients = Patient.all
     erb :"/patients/index.html"
   end
 
@@ -12,7 +13,16 @@ class PatientsController < ApplicationController
 
   # POST: /patients
   post "/patients" do
-    redirect "/patients"
+    @patient = Patient.new(
+      name: params[:name], 
+      adress: params[:adress], 
+      email: params[:email], 
+      phone: params[:phone],
+      description: params[:description]
+      )
+      @patient.save
+      # binding.pry
+     redirect "/patients"
   end
 
   # GET: /patients/5
@@ -32,6 +42,8 @@ class PatientsController < ApplicationController
 
   # DELETE: /patients/5/delete
   delete "/patients/:id/delete" do
+    @patient = Patient.find_by(id: params[:id])
+    @patient.destroy
     redirect "/patients"
   end
 end

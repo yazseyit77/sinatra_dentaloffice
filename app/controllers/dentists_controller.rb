@@ -1,8 +1,12 @@
+require 'rack-flash'
+
 class DentistsController < ApplicationController
+  use Rack::Flash
 
   # GET: /dentists
-  get "/dentists" do
-    erb :"/dentists/index.html"
+  get "/" do
+    @dentist = Dentist.all
+    erb :welcome
   end
 
   # GET: /dentists/new
@@ -12,13 +16,46 @@ class DentistsController < ApplicationController
 
   # POST: /dentists
   post "/dentists" do
-    redirect "/dentists"
+    @dentist = Dentist.new(
+      name: params[:name], 
+      username: params[:username], 
+      email: params[:email], 
+      password: params[:password]
+      )
+      if @dentist.save
+        # binding.pry
+        session[:dentist_id] = @dentist.id
+     
+        redirect "/dentists/#{@dentist.id}"
+      else
+        redirect "/dentists/new"
+      end  
   end
 
-  # GET: /dentists/5
-  get "/dentists/:id" do
-    erb :"/dentists/show.html"
+    # GET: /dentists/5
+    get "/dentists/:id" do
+      erb :"/dentists/index.html"
+    end
+  
+
+  get "/dentists/login" do
+    if logged_in?
+      flash[:message] = "You are logged in!"
+      redirect "/dentists/index.html"
+    else
+      erb :"/dentists/login.html"
+    end
   end
+
+  post "/dentists/login" do
+    @dentist = Dentist.find_by(username: params[:dentist][:username])
+    if @dentist
+      redirect to "/dentists/#{@dentist.id}"
+    else 
+      redirect "/dentists/login.html"
+    end
+  end
+
 
   # GET: /dentists/5/edit
   get "/dentists/:id/edit" do

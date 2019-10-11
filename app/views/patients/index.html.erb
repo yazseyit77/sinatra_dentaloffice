@@ -1,1 +1,10 @@
-<h1>This is the Model's index page.</h1>
+<h1>Patient's Info</h1>
+
+<% @patients.all.each do |p| %>
+    <p>Name: <%= p.name %></p>
+    <p>Address: <%= p.adress %></p>
+    <p>Email: <%= p.email %></p>
+    <p>Phone #: <%= p.phone %> </p>
+    <p>Description <%= p.description %></p>
+
+    <% end %>

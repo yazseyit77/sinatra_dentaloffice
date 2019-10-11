@@ -6,5 +6,5 @@ end
 
 use Rack::MethodOverride
 use PatientsController
-use DentistsController
-run ApplicationController
+use ApplicationController
+run DentistsController

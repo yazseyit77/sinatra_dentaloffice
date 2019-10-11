@@ -1,1 +1,5 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h1>Edit your profile!</h1>
+<form action="/dentists/<%= @dentist.id %>" method="post">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <input type="text" ...>
+</form>
