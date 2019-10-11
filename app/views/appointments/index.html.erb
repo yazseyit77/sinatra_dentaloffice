@@ -6,6 +6,7 @@
 <br>
 <br>
 
+<a href="/appointments/new"><input class="btn" type="submit" value="Create"  ></a> 
 <% @app.all.each do |app| %>
     <p>Purpose: <%= app.purpose %></p>
     <p>Dentist ID: <%= app.dentist_id %></p>
@@ -24,5 +25,6 @@
 
     <% end %>
 
-    
+<a href="/appointments/new"><input class="btn" type="submit" value="Create"  ></a> 
+
 <a href="/dentists/index"><input class="btn" type="submit" value="Home"  ></a>
