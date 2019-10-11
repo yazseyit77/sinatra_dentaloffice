@@ -2,7 +2,7 @@ class AppointmentsController < ApplicationController
 
   # GET: /appointments
   get "/appointments" do
-    @app = Appointments.all
+    @app = Appointment.all
     erb :"/appointments/index.html"
   end
 
@@ -13,8 +13,8 @@ class AppointmentsController < ApplicationController
 
   # POST: /appointments
   post "/appointments" do
-    @app = Appointments.new(
-      prupose: params[:purpose],
+    @app = Appointment.new(
+      purpose: params[:purpose],
       dentist_id: params[:dentist_id],
       patient_id: params[:patient_id]
     )
@@ -29,20 +29,20 @@ class AppointmentsController < ApplicationController
 
   # GET: /appointments/5/edit
   get "/appointments/:id/edit" do
-    @app = Appointments.find_by(id: params[:id])
+    @app = Appointment.find_by(id: params[:id])
     erb :"/appointments/edit.html"
   end
 
   # PATCH: /appointments/5
   patch "/appointments/:id" do
-    @app = Appointments.find_by(id: params[:id])
-    @app.update(params[:appointments])
+    @app = Appointment.find_by(id: params[:id])
+    @app.update(params[:appointment])
     redirect "/appointments"
   end
 
   # DELETE: /appointments/5/delete
-  delete "/appointments/:id/delete" do
-    @app = Appointments.find_by(id: params[:id])
+  delete "/appointments/:id" do
+    @app = Appointment.find_by(id: params[:id])
     @app.destroy
     redirect "/appointments"
   end

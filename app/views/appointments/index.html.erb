@@ -9,7 +9,7 @@
     <a href="/appointments/<%=app.id%>/edit"><input class="btn" type="submit" value="Edit"  ></a>
     
     
-        <form method="post" action="/patients/<%=  p.id %>">
+        <form method="post" action="/appointments/<%=  app.id %>">
             <input id="hidden" type="hidden" name="_method" value="DELETE">
             <input type="submit" value="Delete">
         </form>
