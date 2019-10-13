@@ -4,6 +4,13 @@ class PatientsController < ApplicationController
   get "/patients" do
     @patients = Patient.all
     erb :"/patients/index.html"
+    # if logged_in?
+    #   @dentist = current_user
+    #   @patients = Patient.where(dentist_id: session[:dentist_id])
+    #   erb :"/patients/index.html"
+    # else
+    #   redirect "/dentists/login"
+    # end
   end
 
   # GET: /patients/new

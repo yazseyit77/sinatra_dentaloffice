@@ -1,4 +1,4 @@
-<h1>Patient's List</h1>
+<h1>Patient List</h1>
 <h1>-------------------</h1>
 
 <a href="/dentists/index"><input class="btn" type="submit" value="Home"  ></a>
@@ -10,6 +10,7 @@
 
 <br>
 <br>
+
 <% @patients.all.each do |p| %>
     <p>Name: <%= p.name %></p>
     <p>Address: <%= p.adress %></p>

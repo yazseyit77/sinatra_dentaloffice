@@ -7,7 +7,7 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-    set :session_secret, 'dentist'
+    set :session_secret, 'my_dentist'
   end
 
   get "/" do
@@ -15,82 +15,13 @@ class ApplicationController < Sinatra::Base
   end
 
   
-  get "/login" do
-    if logged_in?
-      @dentist = current_user
-      redirect "/dentists/index.html"
-    else
-      erb :"/dentists/login"
-    end
-  end
-
-  post "/dentists/login" do
-    @dentist = Dentist.find_by(username: params[:dentist][:username])
-    if @dentist
-      redirect to "/dentists/#{@dentist.id}"
-    else 
-      redirect "/dentists/login"
-    end
-  end
-
-
-  # get '/signup' do
-  #   if logged_in?
-  #     session.clear
-  #     erb :"dentists/index.html"
-  #   else
-  #     erb :"dentists/new.html"
-  #   end
-  # end
-
-  # post '/signup' do
-  #   @dentist = Dentist.new(
-  #         name: params[:name], 
-  #         username: params[:username], 
-  #         email: params[:email], 
-  #         password: params[:password]
-  #         )
-  #   if @dentist.save
-  #     session[:dentist_id] = @dentist.id
-  #     redirect '/login'
-  #   else
-  #     redirect "dentists/new.html"
-  #   end
-  # end
-
-  # get '/login' do
-  #   if logged_in?
-  #     # flash[:message] = "You are already logged in."
-  #     redirect to "/dentists/index.html"
-  #   else
-  #     erb :login
-  #   end
-  # end
-
-  # post '/login' do
-  #   @user = User.find_by(username: params[:user][:username])
-  #   if @user && @user.authenticate(params[:user][:password])
-  #     session[:user_id] = @user.id
-  #     redirect '/'
-  #   else
-  #     flash[:message] = "Invalid username or/and password. Please try again."
-  #     redirect '/login'
-  #   end
-  # end
-
-  # post '/logout' do
-  #   session.clear
-  #   redirect '/'
-  # end
-
-
   helpers do
     def logged_in?
       !!session[:dentist_id]
     end
 
     def current_user
-      Dentist.find_by(id: session[:id])
+      Dentist.find_by_id(session[:dentist_id]) if logged_in?
     end
   end
 
