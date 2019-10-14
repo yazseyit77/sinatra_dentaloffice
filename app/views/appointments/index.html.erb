@@ -1,30 +1,37 @@
-<h1>Appointments:</h1>
-<h1>-------------------</h1>
 
-<a href="/dentists/index"><input class="btn" type="submit" value="Home"  ></a>
-
-<br>
-<br>
-
-<a href="/appointments/new"><input class="btn" type="submit" value="Create"  ></a> 
-<% @app.all.each do |app| %>
-    <p>Purpose: <%= app.purpose %></p>
-    <p>Dentist ID: <%= app.dentist_id %></p>
-    <p>Patient ID: <%= app.patient_id %></p>
-    <p>Date: <%= app.appoinment_date %></p>
-       
-    <a href="/appointments/<%=app.id%>/edit"><input class="btn" type="submit" value="Edit"  ></a>
-    
-    
-        <form method="post" action="/appointments/<%=  app.id %>">
-            <input id="hidden" type="hidden" name="_method" value="DELETE">
-            <input type="submit" value="Delete">
-        </form>
-
+<div class="container-fluid content-secction">
+    <h1>Appointments:</h1>
+    <a href="/appointments/new"><input class="btn btn-primary" type="submit" value="Create"  ></a> 
     <p> ---------------------------------------------- </p>
-
-    <% end %>
-
-<a href="/appointments/new"><input class="btn" type="submit" value="Create"  ></a> 
-
-<a href="/dentists/index"><input class="btn" type="submit" value="Home"  ></a>
+    <br>
+    
+    <% @app.all.each do |app| %>
+    <div class=" my_header">
+        <div class="row">
+            <div class="col-6 col-md-4">
+                <p>Purpose: <%= app.purpose %></p>
+                <p>Date: <%= app.appoinment_date %></p>
+            </div>
+            <div class="col-6 col-md-4">
+                <p>Dentist ID: <%= app.dentist_id %></p>
+                <p>Patient ID: <%= app.patient_id %></p>
+            </div>
+        </div>
+    </div>
+    <div class=" my_header">
+        <div class="row">
+            <div class="col-6 col-md-4">
+                <a href="/appointments/<%=app.id%>/edit"><input class="btn btn-primary" type="submit" value="Edit"  ></a>
+            </div>
+            <div class="col-6 col-md-4">
+                <form method="post" action="/appointments/<%=  app.id %>">
+                    <input id="hidden" type="hidden" name="_method" value="DELETE">
+                    <input type="submit" class="btn btn-primary" value="Delete">
+                </form>
+            </div>
+        </div>
+    </div>
+            
+        <p> ---------------------------------------------- </p>
+        <% end %>
+</div>

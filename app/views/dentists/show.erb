@@ -1,26 +1,24 @@
 <h1> Dentists List </h1>
-
-<a href="/"><input class="btn" type="submit" value="Home"  ></a>
-<a href="/dentists/index"><input class="btn" type="submit" value="Back"  ></a>
+<p> ---------------------------------------------</p>
 
 <% @dentist.all.each do |dentist| %>
-    <p>Name: <%= dentist.name %></p>
-    <p>Username: <%= dentist.username %></p>
-    <p>Email: <%= dentist.email %></p>
-    <p>Password: <%= dentist.password %></p>
-       
-    <a href="/dentists/<%=dentist.id%>/edit"><input class="btn" type="submit" value="Edit"  ></a>
-    
-    
-        <form method="post" action="/dentists/<%=  dentist.id %>">
-            <input id="hidden" type="hidden" name="_method" value="DELETE">
-            <input type="submit" value="Delete">
-        </form>
-
+    <div class=" my_header">
+        <div class="row">
+            <div class="col-6 col-md-4">
+                <p>Name: <%= dentist.name %></p>
+                <p>Username: <%= dentist.username %></p>
+                <a href="/dentists/<%=dentist.id%>/edit"><input class="btn btn-primary" type="submit" value="Edit"  ></a>
+            </div>
+            <div class="col-6 col-md-4">
+                <p>Email: <%= dentist.email %></p>
+                <p>Password: <%= dentist.password %></p>
+                <form method="post" action="/dentists/<%=  dentist.id %>">
+                    <input id="hidden" type="hidden" name="_method" value="DELETE">
+                    <input type="submit" class="btn btn-primary"  value="Delete">
+                </form>
+            </div>
+        </div>
+    </div>
+            
     <p> ---------------------------------------------- </p>
-
-    <% end %>
-
-    
-<a href="/dentists/index"><input class="btn" type="submit" value="Back"  ></a>
-<a href="/"><input class="btn" type="submit" value="Home"  ></a>
+    <% end %>  

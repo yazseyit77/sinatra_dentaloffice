@@ -5,15 +5,15 @@ class DentistsController < ApplicationController
 
   # GET: /dentists
   get "/dentists/show" do
-    if logged_in?
-      @dentist = current_user
-      @dentist = Dentist.where(id: session[:id])
-      erb :"/dentists/show"
-    else
-      redirect "/dentists/login"
-    end
-    # @dentist = Dentist.all
-    # erb :"/dentists/show"
+    # if logged_in?
+    #   @dentist = current_user
+    #   @dentist = Dentist.where(id: session[:id])
+    #   erb :"/dentists/show"
+    # else
+    #   redirect "/dentists/login"
+    # end
+    @dentist = Dentist.all
+    erb :"/dentists/show"
   end
 
   # GET: /dentists/new
@@ -32,7 +32,7 @@ class DentistsController < ApplicationController
       if @dentist.save
         session[:dentist_id] = @dentist.id
        
-        redirect "/dentists/index.html"
+        redirect "/dentists/show"
       else
         redirect "/dentists/new.html"
       end  
@@ -60,7 +60,7 @@ class DentistsController < ApplicationController
 
     # GET: /dentists/5
   get "/dentists/:id" do
-    erb :"/dentists/index.html"
+    erb :"/dentists/show"
   end
   
   # GET: /dentists/5/edit

@@ -1,39 +1,35 @@
 <h1>Patient List</h1>
-<h1>-------------------</h1>
+<a href="/patients/new"><input class="btn btn-primary" type="submit" value="Create"  ></a> 
 
-<a href="/dentists/index"><input class="btn" type="submit" value="Home"  ></a>
+    <br>
+    <br>
+
+    <% @patients.all.each do |p| %>
+    <div class=" my_header">
+        <div class="row">
+            <div class="col-6 col-md-4">
+                <p>Name: <%= p.name %></p>
+                <p>Address: <%= p.adress %></p>
+                <p>Email: <%= p.email %></p> 
+            </div>
+            <div class="col-6 col-md-4">
+                <p>Phone : <%= p.phone %> </p>
+                <p>Description <%= p.description %></p>
+            </div>
+        </div>
+    </div>       
+    <div class=" my_header">
+        <div class="row">
+            <div class="col-6 col-md-4"> 
+                <a href="/patients/<%=p.id%>/edit"><input class="btn btn-primary" type="submit" value="Edit"  ></a>                  
+            </div>
+            <div class="col-6 col-md-4">  
+                <form method="post" action="/patients/<%=  p.id %>">
+                    <input id="hidden" type="hidden" name="_method" value="DELETE">
+                    <input type="submit" class="btn btn-primary" value="Delete">
+                </form>
+            </div>
+        </div>
+    </div>         
 <p> ---------------------------------------------- </p>
-<br>
-<br>
-
-<a href="/patients/new"><input class="btn" type="submit" value="Create"  ></a> 
-
-<br>
-<br>
-
-<% @patients.all.each do |p| %>
-    <p>Name: <%= p.name %></p>
-    <p>Address: <%= p.adress %></p>
-    <p>Email: <%= p.email %></p>
-    <p>Phone #: <%= p.phone %> </p>
-    <p>Description <%= p.description %></p>
-    
-    <a href="/patients/<%=p.id%>/edit"><input class="btn" type="submit" value="Edit"  ></a>
-    
-    
-        <form method="post" action="/patients/<%=  p.id %>">
-            <input id="hidden" type="hidden" name="_method" value="DELETE">
-            <input type="submit" value="Delete">
-        </form>
-
-    <p> ---------------------------------------------- </p>
-
-    <% end %>
-
-    <br>
-    <br>
-    <a href="/patients/new"><input class="btn" type="submit" value="Create"  ></a> 
-    <br>
-    <br>
-
-    <a href="/dentists/index"><input class="btn" type="submit" value="Home"  ></a>
+<% end %>

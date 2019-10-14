@@ -34,7 +34,7 @@ class PatientsController < ApplicationController
 
   # GET: /patients/5
   get "/patients/:id" do
-    erb :"/patients/show.html"
+    erb :"/patients/index.html"
   end
 
   # GET: /patients/5/edit
