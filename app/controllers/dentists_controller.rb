@@ -1,7 +1,6 @@
 require 'rack-flash'
 
 class DentistsController < ApplicationController
-  use Rack::Flash
 
   # GET: /dentists
   get "/dentists/show" do
@@ -31,7 +30,6 @@ class DentistsController < ApplicationController
       )
       if @dentist.save
         session[:dentist_id] = @dentist.id
-       
         redirect "/dentists/show"
       else
         redirect "/dentists/new.html"
@@ -39,20 +37,21 @@ class DentistsController < ApplicationController
   end
 
   get "/dentists/login" do
-    @dentist = Dentist.find_by(username: params[:username])
-    if @dentist && @dentist.authenticate(params[:username])
-      session[:dentist_id] = @dentist.id
-      redirect "/dentists/login"
-    else
-      erb :"/dentists/login"
-    end
+    # @dentist = Dentist.find_by(username: params[:username])
+    # if @dentist && @dentist.authenticate(params[:username])
+    #   session[:dentist_id] = @dentist.id
+    #   redirect "/dentists/show"
+    # else
+    #   erb :"/dentists/login"
+    # end
+    erb :"/dentists/login"
   end
    
-  post "/dentists/login" do
+  post "/dentists" do
     @dentist = Dentist.find_by(username: params[:username])
-    if @dentist && @dentist.authenticate(params[:username])
+    if @dentist
       session[:dentist_id] = @dentist.id
-      redirect to "/dentists/#{@dentist.id}"
+      redirect "/dentists/show"
     else 
       redirect "/dentists/login"
     end
