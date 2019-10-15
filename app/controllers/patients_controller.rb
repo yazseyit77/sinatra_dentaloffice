@@ -50,7 +50,12 @@ class PatientsController < ApplicationController
 
   # GET: /patients/5
   get "/patients/:id" do
-    erb :"/patients/index.html"
+    if logged_in?
+      @patient = Patient.find_by_id(params[:id])
+      erb :"/patients/index.html"
+    else
+      redirect "/dentists/login"
+    end
   end
 
   # GET: /patients/5/edit
