@@ -1,9 +1,8 @@
-<h1>Patient List</h1>
+<h1><%=current_user.name%>'s Patient List</h1>
 <a href="/patients/new"><input class="btn btn-primary" type="submit" value="Create"  ></a> 
 
     <br>
     <br>
-
     <% current_user.patients.each do |p| %>
     <div class=" my_header">
         <div class="row">

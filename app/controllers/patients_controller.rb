@@ -23,14 +23,18 @@ class PatientsController < ApplicationController
 
   # POST: /patients
   post "/patients" do
-    @patient = Patient.new(
+    if logged_in? 
+    @patient = current_user.patients.create(
       name: params[:name], 
       adress: params[:adress], 
       email: params[:email], 
       phone: params[:phone],
       description: params[:description]
       )
-      @patient.save
+      # @patient.dentist_id = current_user
+    #  if @patient.save
+    #     # @patient.dentist_id = current_user
+    #  end
      redirect "/patients"
 
     # if params.empty?
@@ -46,6 +50,7 @@ class PatientsController < ApplicationController
     #   redirect "/dentists/login"
     # end
     # current_user.save
+    end
   end
 
   # GET: /patients/5

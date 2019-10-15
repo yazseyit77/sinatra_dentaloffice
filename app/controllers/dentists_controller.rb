@@ -21,15 +21,15 @@ class DentistsController < ApplicationController
 
   # POST: /dentists
   post "/dentists" do
-    @dentist = Dentist.new(
+    @dentist = Dentist.create(
       name: params[:name], 
       username: params[:username], 
       email: params[:email], 
       password: params[:password]
       )
       if @dentist.save
-        session[:user_id] = @dentist.id 
-        redirect "/dentists/show"
+        (session[:user_id] = @dentist.id)
+        (redirect "/dentists/show")
       else
         redirect "/dentists/new"
       end  
@@ -49,7 +49,7 @@ class DentistsController < ApplicationController
    
   post "/dentists/login" do
     @dentist = Dentist.find_by(username: params[:username])
-    if @dentist && @dentist.authenticate(params[:username])
+    if @dentist && @dentist.authenticate(params[:password])
       session[:user_id] = @dentist.id
       redirect "/dentists/show"
     else 
@@ -59,7 +59,13 @@ class DentistsController < ApplicationController
 
     # GET: /dentists/5
   get "/dentists/:id" do
-    erb :"/dentists/show"
+    if logged_in?
+      # @dentists = Dentist.find_by(id: params[:id])
+      erb :"/dentists/show"
+    else
+      redirect "/dentists/login"
+    end
+    # erb :"/dentists/show"
   end
   
   # GET: /dentists/5/edit
