@@ -47,7 +47,7 @@ class DentistsController < ApplicationController
     # erb :"/dentists/login"
   end
    
-  post "/dentists" do
+  post "/dentists/login" do
     @dentist = Dentist.find_by(username: params[:username])
     if @dentist && @dentist.authenticate(params[:username])
       session[:user_id] = @dentist.id

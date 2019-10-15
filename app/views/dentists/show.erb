@@ -1,7 +1,7 @@
 <h1> Dentists List </h1>
 <p> ---------------------------------------------</p>
 
-<% @dentist.all.each do |dentist| %>
+<% dentist = current_user %>
     <div class="my_header">
         <div class="row">
             <div class="col-6 col-md-4">
@@ -11,7 +11,6 @@
             </div>
             <div class="col-6 col-md-4">
                 <p>Email: <%= dentist.email %></p>
-                <p>Password: <%= dentist.password %></p>
                 <form method="post" action="/dentists/<%=  dentist.id %>">
                     <input id="hidden" type="hidden" name="_method" value="DELETE">
                     <input type="submit" class="btn btn-primary"  value="Delete">
@@ -21,4 +20,4 @@
     </div>
             
     <p> ---------------------------------------------- </p>
-    <% end %>  
+

@@ -180,8 +180,8 @@ section {
     right: 10%;
     top: 20%;
     transform: translateY(-50%);
-    animation: fadeIn 1s linear forwards;
-    animation-delay: 4.5s;
+    animation: fadeIn 0.8s linear forwards;
+    animation-delay: 1s;
     z-index: 100;
     max-width: 250%;
     height: auto;
@@ -205,32 +205,32 @@ section {
 
 .header ul li:nth-child(1),
 .sci li:nth-child(1) {
-    animation-delay: 4s;
+    animation-delay: 2s;
 }
 
 .header ul li:nth-child(2),
 .sci li:nth-child(2) {
-    animation-delay: 4.25s;
+    animation-delay: 2.25s;
 }
 
 .header ul li:nth-child(3),
 .sci li:nth-child(3) {
-    animation-delay: 4.5s;
+    animation-delay: 2.5s;
 }
 
 .header ul li:nth-child(4),
 .sci li:nth-child(4) {
-    animation-delay: 4.75s;
+    animation-delay: 2.75s;
 }
 
 .header ul li:nth-child(5),
 .sci li:nth-child(5) {
-    animation-delay: 5s;
+    animation-delay: 3s;
 }
 
 .header ul li:nth-child(6),
 .sci li:nth-child(6) {
-    animation-delay: 5.25s;
+    animation-delay: 3.25s;
 }
 
 .sci li a {
@@ -264,7 +264,7 @@ section {
     font-size: 2em;
     text-transform: uppercase;
     animation: fadeIn 0.5s linear forwards;
-    animation-delay: 3s;
+    animation-delay: 2.5s;
 }
 
 .header ul {
@@ -321,7 +321,7 @@ section {
     height: 150px;
     border: 10px solid #000;
     animation: rotate 40s linear infinite, fadeIn 1s linear forwards;
-    animation-delay: 5s;
+    animation-delay: 3.5s;
 }
 
 .element2 {
@@ -333,7 +333,7 @@ section {
     height: 50px;
     border: 2px solid #000;
     animation: rotate 30s linear infinite, fadeIn 1s linear forwards;
-    animation-delay: 5s;
+    animation-delay: 3.5s;
 }
 
 @keyframes rotate {
