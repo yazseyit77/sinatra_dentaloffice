@@ -1,6 +1,5 @@
-require 'rack-flash'
-
 class DentistsController < ApplicationController
+  enable :sessions
 
   # GET: /dentists
   get "/dentists/show" do
@@ -18,7 +17,7 @@ class DentistsController < ApplicationController
   # GET: /dentists/new
   get "/dentists/new" do
     erb :"/dentists/new.html"
-   end
+  end
 
   # POST: /dentists
   post "/dentists" do
@@ -29,28 +28,29 @@ class DentistsController < ApplicationController
       password: params[:password]
       )
       if @dentist.save
-        session[:dentist_id] = @dentist.id
+        session[:user_id] = @dentist.id 
         redirect "/dentists/show"
       else
-        redirect "/dentists/new.html"
+        redirect "/dentists/new"
       end  
   end
 
   get "/dentists/login" do
-    # @dentist = Dentist.find_by(username: params[:username])
+    @dentist = Dentist.find_by(username: params[:username])
     # if @dentist && @dentist.authenticate(params[:username])
     #   session[:dentist_id] = @dentist.id
     #   redirect "/dentists/show"
     # else
     #   erb :"/dentists/login"
     # end
-    erb :"/dentists/login"
+    !logged_in? ? (erb :"/dentists/login") : (redirect "/dentists/show")
+    # erb :"/dentists/login"
   end
    
   post "/dentists" do
     @dentist = Dentist.find_by(username: params[:username])
-    if @dentist
-      session[:dentist_id] = @dentist.id
+    if @dentist && @dentist.authenticate(params[:username])
+      session[:user_id] = @dentist.id
       redirect "/dentists/show"
     else 
       redirect "/dentists/login"
@@ -80,5 +80,14 @@ class DentistsController < ApplicationController
     @dentists = Dentist.find_by(id: params[:id])
     @dentists.destroy
     redirect "/dentists/show"
+  end
+
+  get "/logout" do
+    if logged_in? 
+        session.destroy
+        redirect "/dentists/login" 
+    else
+        redirect "/dentists/show"
+    end
   end
 end

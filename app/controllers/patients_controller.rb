@@ -2,20 +2,23 @@ class PatientsController < ApplicationController
 
   # GET: /patients
   get "/patients" do
-    @patients = Patient.all
-    erb :"/patients/index.html"
-    # if logged_in?
-    #   @dentist = current_user
-    #   @patients = Patient.where(dentist_id: session[:dentist_id])
-    #   erb :"/patients/index.html"
-    # else
-    #   redirect "/dentists/login"
-    # end
+    # @patients = Patient.all
+    # erb :"/patients/index.html"
+    if logged_in?
+      @patients = Patient.all
+      erb :"/patients/index.html"
+    else
+      redirect "/dentists/login"
+    end
   end
 
   # GET: /patients/new
   get "/patients/new" do
-    erb :"/patients/new.html"
+    if logged_in?
+      erb :"/patients/new.html"
+    else
+      redirect "/dentists/login"
+    end
   end
 
   # POST: /patients
@@ -28,8 +31,21 @@ class PatientsController < ApplicationController
       description: params[:description]
       )
       @patient.save
-      # binding.pry
      redirect "/patients"
+
+    # if params.empty?
+    #   redirect "/patients/new"
+    # elsif logged_in? && !params.empty?
+    #   @patient = current_user.patients.create(name: params[:name], adress: params[:adress], email: params[:email], phone: params[:phone], description: params[:description])
+    #   if @patient.save
+    #     redirect "/patients/#{@patient.id}"
+    #   else 
+    #     erb :"/patients/new.html"
+    #   end
+    # else
+    #   redirect "/dentists/login"
+    # end
+    # current_user.save
   end
 
   # GET: /patients/5

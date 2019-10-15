@@ -17,11 +17,11 @@ class ApplicationController < Sinatra::Base
   
   helpers do
     def logged_in?
-      !!session[:dentist_id]
+      !!session[:user_id]
     end
 
     def current_user
-      Dentist.find_by_id(session[:dentist_id]) if logged_in?
+      Dentist.find_by_id(session[:user_id])
     end
   end
 
