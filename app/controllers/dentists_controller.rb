@@ -3,14 +3,7 @@ class DentistsController < ApplicationController
 
   # GET: /dentists
   get "/dentists/show" do
-    # if logged_in?
-    #   @dentist = current_user
-    #   @dentist = Dentist.where(id: session[:id])
-    #   erb :"/dentists/show"
-    # else
-    #   redirect "/dentists/login"
-    # end
-    @dentist = Dentist.all
+    @dentist = Dentist.all.sort_by{|d| d.name}
     erb :"/dentists/show"
   end
 
@@ -37,14 +30,7 @@ class DentistsController < ApplicationController
 
   get "/dentists/login" do
     @dentist = Dentist.find_by(username: params[:username])
-    # if @dentist && @dentist.authenticate(params[:username])
-    #   session[:dentist_id] = @dentist.id
-    #   redirect "/dentists/show"
-    # else
-    #   erb :"/dentists/login"
-    # end
     !logged_in? ? (erb :"/dentists/login") : (redirect "/dentists/show")
-    # erb :"/dentists/login"
   end
    
   post "/dentists/login" do

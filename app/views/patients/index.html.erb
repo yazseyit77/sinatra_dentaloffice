@@ -3,10 +3,11 @@
 
     <br>
     <br>
-    <% current_user.patients.each do |p| %>
+    <% @patients.each do |p| %>
     <div class=" my_header">
         <div class="row">
             <div class="col-6 col-md-4">
+                
                 <p>Name: <%= p.name %></p>
                 <p>Address: <%= p.adress %></p>
                 <p>Email: <%= p.email %></p> 

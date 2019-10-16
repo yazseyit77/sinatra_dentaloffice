@@ -5,7 +5,7 @@ class PatientsController < ApplicationController
     # @patients = Patient.all
     # erb :"/patients/index.html"
     if logged_in?
-      @patients = Patient.all
+      @patients = current_user.patients.all.sort_by{|p| p.name }
       erb :"/patients/index.html"
     else
       redirect "/dentists/login"
@@ -24,32 +24,18 @@ class PatientsController < ApplicationController
   # POST: /patients
   post "/patients" do
     if logged_in? 
-    @patient = current_user.patients.create(
+    @patient = current_user.patients.new(
       name: params[:name], 
       adress: params[:adress], 
       email: params[:email], 
       phone: params[:phone],
       description: params[:description]
       )
-      # @patient.dentist_id = current_user
-    #  if @patient.save
-    #     # @patient.dentist_id = current_user
-    #  end
-     redirect "/patients"
-
-    # if params.empty?
-    #   redirect "/patients/new"
-    # elsif logged_in? && !params.empty?
-    #   @patient = current_user.patients.create(name: params[:name], adress: params[:adress], email: params[:email], phone: params[:phone], description: params[:description])
-    #   if @patient.save
-    #     redirect "/patients/#{@patient.id}"
-    #   else 
-    #     erb :"/patients/new.html"
-    #   end
-    # else
-    #   redirect "/dentists/login"
-    # end
-    # current_user.save
+      if @patient.save
+        redirect "/patients"
+      else
+        redirect "/dentists/login"
+      end
     end
   end
 
